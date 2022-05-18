@@ -30,16 +30,13 @@ export class DiscordListener {
     this.appLogger.warn(message);
   }
 
-  async cleanChannels(channelList: string[]) {
+  async cleanChannels(channelList: string[], log = true) {
     const channels = channelList.map((c) => this.utils.findChannel(c));
     channels.map((c) => {
-      this.utils
-        .cleanChannel(c)
-        .then((messagesCleaned) =>
-          this.tasksLogger.log(
-            `Cleaned ${messagesCleaned} from ${c.name} channel.`,
-          ),
-        );
+      this.utils.cleanChannel(c).then((cleaned) => {
+        if (log)
+          this.tasksLogger.log(`Cleaned ${cleaned} from ${c.name} channel.`);
+      });
     });
     return channels;
   }
@@ -54,7 +51,7 @@ export class DiscordListener {
   }
   @Cron(CronExpression.EVERY_10_SECONDS)
   async podiumSystem() {
-    const channels = await this.cleanChannels(['podium']);
+    const channels = await this.cleanChannels(['podium'], false);
     const usersData = await this.prisma.user.findMany({
       orderBy: { balance: 'desc' },
       select: { balance: true, id: true },
