@@ -44,11 +44,11 @@ export class DiscordListener {
     return channels;
   }
 
-  @Cron('0 0 * * *', { timeZone: 'America/Maceio' })
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT, { timeZone: 'America/Maceio' })
   cleanCommandChannel() {
     return this.cleanChannels(['magias-de-comando']);
   }
-  @Cron('0 4 * * *', { timeZone: 'America/Maceio' })
+  @Cron(CronExpression.EVERY_DAY_AT_4AM, { timeZone: 'America/Maceio' })
   cleanBrothelChannel() {
     return this.cleanChannels(['roletagens', 'outros']);
   }
