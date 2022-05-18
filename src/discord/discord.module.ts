@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Intents } from 'discord.js';
 import { NecordModule } from 'necord';
+import { config } from 'process';
 import { DiscordUtils } from 'src/utils';
 import { DiscordCommand } from './discord.command';
 import { DiscordListener } from './discord.listener';
@@ -22,7 +23,7 @@ import { DiscordService } from './discord.service';
           Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
           Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
         ],
-        development: ['871755122911367208'],
+        development: [configService.get('DISCORD_GUILD')],
       }),
       inject: [ConfigService],
     }),

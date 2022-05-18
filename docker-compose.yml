@@ -1,0 +1,11 @@
+services:
+  db:
+    container_name: db
+    image: bitnami/postgresql:latest
+    environment:
+      - POSTGRESQL_USERNAME=botato
+      - POSTGRESQL_PASSWORD=botato
+      - POSTGRESQL_DATABASE=botato
+    ports:
+      - 5432:5432
+    
