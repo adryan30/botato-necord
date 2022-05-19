@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DiscordModule } from './discord/discord.module';
 import { PrismaService } from './prisma.service';
+import { DiscordUtils } from './utils';
 
 @Global()
 @Module({
@@ -14,7 +15,7 @@ import { PrismaService } from './prisma.service';
     ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService],
+  providers: [AppService, PrismaService, DiscordUtils],
   exports: [PrismaService],
 })
 export class AppModule {}

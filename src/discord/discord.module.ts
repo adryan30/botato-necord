@@ -3,9 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Intents } from 'discord.js';
 import { NecordModule } from 'necord';
 import { DiscordUtils } from 'src/utils';
-import { DiscordListener } from './discord.listener';
 import { DiscordService } from './discord.service';
+import { MusicService } from './modules/music.service';
 import { PrefixService } from './modules/prefix.service';
+import { RoleService } from './modules/role.service';
 
 @Module({
   imports: [
@@ -28,6 +29,13 @@ import { PrefixService } from './modules/prefix.service';
     }),
   ],
   controllers: [],
-  providers: [DiscordListener, DiscordUtils, DiscordService, PrefixService],
+  providers: [
+    DiscordService,
+    DiscordUtils,
+    DiscordService,
+    PrefixService,
+    RoleService,
+    MusicService,
+  ],
 })
 export class DiscordModule {}

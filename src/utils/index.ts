@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Client, Collection, Message, TextChannel } from 'discord.js';
+import { addMilliseconds, format } from 'date-fns';
 
 @Injectable()
 export class DiscordUtils {
@@ -33,5 +34,23 @@ export class DiscordUtils {
       await channel.bulkDelete(fetched);
     } while (fetched.size > 2);
     return messageQuantity;
+  }
+
+  spliceIntoChunks(arr, chunkSize) {
+    const res = [];
+    while (arr.length > 0) {
+      const chunk = arr.splice(0, chunkSize);
+      res.push(chunk);
+    }
+    return res;
+  }
+
+  msToHMS(miliseconds: number) {
+    const hour = 60 * 60 * 1000;
+    if (miliseconds > hour) {
+      return '> 1h';
+    }
+    const duration = addMilliseconds(0, miliseconds);
+    return format(duration, 'mm:ss');
   }
 }

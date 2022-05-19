@@ -1,0 +1,59 @@
+diff --git a/node_modules/discordjs-button-embed-pagination/dist/index.js b/node_modules/discordjs-button-embed-pagination/dist/index.js
+index 6880d3a..3fc2472 100644
+--- a/node_modules/discordjs-button-embed-pagination/dist/index.js
++++ b/node_modules/discordjs-button-embed-pagination/dist/index.js
+@@ -12,7 +12,7 @@ class Pagination {
+      * @param {number} timeout - How long button need to be active
+      * @param {ButtonOption[]} options - optional options for the buttons
+      */
+-    constructor(channel, pages, footerText = "Page", timeout, options) {
++    constructor(channel, pages, footerText = "Página", timeout = 60 * 1000 * 10, options) {
+         this.footerText = footerText;
+         this.timeout = timeout;
+         this.options = options;
+@@ -28,7 +28,7 @@ class Pagination {
+             if (page.footer && (page.footer.text || page.footer.iconURL))
+                 return page;
+             return page.setFooter({
+-                text: `${footerText} ${pageIndex + 1} of ${pages.length}`
++                text: `${footerText} ${pageIndex + 1} de ${pages.length}`
+             });
+         });
+     }
+@@ -54,31 +54,31 @@ class Pagination {
+                         {
+                             type: 2,
+                             style: "PRIMARY",
+-                            label: "First",
++                            label: "Primeiro",
+                             emoji: "⏮️",
+                             customId: "⏮️"
+                         }, {
+                             type: 2,
+                             style: "PRIMARY",
+-                            label: "Prev",
++                            label: "Anterior",
+                             emoji: "◀️",
+                             customId: "◀️"
+                         }, {
+                             type: 2,
+                             style: "DANGER",
+-                            label: "Stop",
++                            label: "Parar",
+                             emoji: "⏹️",
+                             customId: "⏹️"
+                         }, {
+                             type: 2,
+                             style: "PRIMARY",
+-                            label: "Next",
++                            label: "Próximo",
+                             emoji: "▶️",
+                             customId: "▶️"
+                         }, {
+                             type: 2,
+                             style: "PRIMARY",
+-                            label: "Last",
++                            label: "Último",
+                             emoji: "⏭️",
+                             customId: "⏭️"
+                         },
